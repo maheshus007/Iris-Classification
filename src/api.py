@@ -10,19 +10,29 @@ app = FastAPI()
 # Load the trained model from the .pkl file
 model = joblib.load('model/iris_model.pkl')
 
-# Define a Pydantic model for input data validation
+# Define a Pydantic model for the input data with feature names
 class InputData(BaseModel):
-    features: list  # The input features will be passed as a list
+    sepal_length: float
+    sepal_width: float
+    petal_length: float
+    petal_width: float
 
+# Define a POST endpoint at "/predict" that accepts JSON input conforming to the InputData schema
 @app.post("/predict")
-def predict(input_data: InputData):
-    # Convert the input data to a pandas DataFrame with feature names
-    feature_names = ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']
-    features = np.array(input_data.features).reshape(1, -1)
-    input_df = pd.DataFrame(features, columns=feature_names)
+def predict(features: InputData):
+    # Convert the incoming structured input (Pydantic model) to a dictionary, 
+    # then wrap it in a list to create a DataFrame with one row
+    input_df = pd.DataFrame([[
+        features.sepal_length,
+        features.sepal_width,
+        features.petal_length,
+        features.petal_width
+    ]], columns=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
 
-    # Make prediction using the loaded model
+    
+    # Use the preloaded machine learning model to make a prediction on the input data
     prediction = model.predict(input_df)
     
-    # Return the prediction as a JSON response
+    # Return the prediction result as a JSON response with key "prediction"
     return {"prediction": prediction[0]}
+
