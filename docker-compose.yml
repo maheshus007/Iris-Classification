@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  fastapi-app:
+    build: .
+    ports:
+      - "8000:8000"    # Map the container's port 8000 to the host's port 8000
+    volumes:
+      - .:/app         # Mount the current directory to /app in the container
+    environment:
+      - PYTHONPATH=/app
+    restart: always     # Restart the container if it crashes
