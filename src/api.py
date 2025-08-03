@@ -1,14 +1,19 @@
-from fastapi import FastAPI
 from pydantic import BaseModel, Field, confloat
 import joblib
-import numpy as np
+from prometheus_fastapi_instrumentator import Instrumentator
 import pandas as pd
+from fastapi import FastAPI
+import numpy as np
 
 # Initialize FastAPI app
 app = FastAPI()
 
 # Load the trained model from the .pkl file
-model = joblib.load('../model/iris_model.pkl')
+model = joblib.load('model/iris_model.pkl')
+
+# Prometheus Instrumentation
+instrumentator = Instrumentator()
+instrumentator.instrument(app).expose(app)
 
 # Define a Pydantic model with input validation
 class InputData(BaseModel):
