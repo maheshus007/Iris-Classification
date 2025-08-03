@@ -11,13 +11,6 @@ env/
 .env
 *.env
 
-# Model files
-*.pkl
-*.joblib
-
-# Data files (optional)
-data/*.csv
-
 # VSCode settings
 .vscode/
 

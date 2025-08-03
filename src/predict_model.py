@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Load the trained model
-model = joblib.load('../model/iris_model.pkl')
+model = joblib.load('model/iris_model.pkl')
 
 # Example input (features of a new sample)
 new_sample = np.array([[5.1, 3.5, 1.4, 0.2]])
