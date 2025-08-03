@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Environment files
+.env
+*.env
+
+# Model files
+*.pkl
+*.joblib
+
+# Data files (optional)
+data/*.csv
+
+# VSCode settings
+.vscode/
+
+# macOS hidden files
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Pytest cache
+.cache/
+.pytest_cache/
+
+# Docker
+*.log
+*.pid
+*.sock
