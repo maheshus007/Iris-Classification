@@ -8,7 +8,7 @@ import pandas as pd
 app = FastAPI()
 
 # Load the trained model from the .pkl file
-model = joblib.load('model/iris_model.pkl')
+model = joblib.load('../model/iris_model.pkl')
 
 # Define a Pydantic model with input validation
 class InputData(BaseModel):

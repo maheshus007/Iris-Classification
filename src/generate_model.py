@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier  # The classifier
 from sklearn.metrics import accuracy_score  # To check the accuracy of the model
 
 # Step 1: Load the Iris dataset from the CSV file
-data = pd.read_csv('data/iris.csv')  # Ensure that the CSV file is present in the data folder
+data = pd.read_csv('../data/iris.csv')  # Ensure that the CSV file is present in the data folder
 
 # Display the first few rows of the dataset
 print("Dataset Loaded:")
@@ -28,6 +28,6 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy:.4f}")
 
 # Step 6: Save the trained model as a .pkl file
-joblib.dump(model, 'model/iris_model.pkl')
+joblib.dump(model, '../model/iris_model.pkl')
 
 print("Model saved as 'model/iris_model.pkl'")
