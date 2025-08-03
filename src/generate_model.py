@@ -28,6 +28,6 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy:.4f}")
 
 # Step 6: Save the trained model as a .pkl file
-joblib.dump(model, 'model/iris_model.pkl')
+joblib.dump(model, '../model/iris_model.pkl')
 
 print("Model saved as 'model/iris_model.pkl'")
