@@ -36,6 +36,9 @@ jobs:
       run: |
         docker-compose up --build -d
         sleep 20  # wait for services to start
+        
+    - name: Wait for FastAPI to start
+      run: sleep 15
 
     - name: Test FastAPI /metrics
       run: |
