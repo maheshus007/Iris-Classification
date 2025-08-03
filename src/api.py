@@ -9,7 +9,7 @@ import numpy as np
 app = FastAPI()
 
 # Load the trained model from the .pkl file
-model = joblib.load('../model/iris_model.pkl')
+model = joblib.load('model/iris_model.pkl')
 
 # Prometheus Instrumentation
 instrumentator = Instrumentator()
