@@ -5,11 +5,14 @@ import pandas as pd
 from fastapi import FastAPI
 import numpy as np
 
+from src.generate_model import train_and_save_model
+
 # Initialize FastAPI app
 app = FastAPI()
 
 # Load the trained model from the .pkl file
-model = joblib.load('model/iris_model.pkl')
+model_path = 'model/iris_model.pkl'
+model = joblib.load(model_path)
 
 # Prometheus Instrumentation
 instrumentator = Instrumentator()
@@ -50,3 +53,12 @@ def predict(features: InputData):
     # Return the prediction result as a JSON response with key "prediction"
     return {"prediction": prediction[0]}
 
+@app.post("/train")
+def train_model():
+    global model  # allow reassigning model
+    try:
+        accuracy = train_and_save_model()
+        model = joblib.load(model_path)
+        return {"message": "Model retrained successfully", "accuracy": accuracy}
+    except Exception as e:
+        return {"error": str(e)}
