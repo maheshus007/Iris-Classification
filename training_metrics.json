@@ -1,0 +1,7 @@
+{
+  "best_model": "RandomForest",
+  "training_accuracy": 1.0,
+  "models_tested": 2,
+  "test_samples": 32,
+  "train_samples": 127
+}

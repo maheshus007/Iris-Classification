@@ -1,0 +1,65 @@
+stages:
+  data_preparation:
+    cmd: python -c "import pandas as pd; print('Data preparation stage - iris.csv ready')"
+    deps:
+      - data/iris.csv
+    outs:
+      - data/processed_data.csv
+    desc: "Prepare and validate the iris dataset"
+
+  train_model:
+    cmd: python src/generate_model.py
+    deps:
+      - data/iris.csv
+      - src/generate_model.py
+    outs:
+      - model/iris_model.pkl
+    metrics:
+      - metrics.json
+    desc: "Train machine learning models and select the best one"
+
+  evaluate_model:
+    cmd: python -c "
+import joblib
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+import json
+
+# Load data and model
+data = pd.read_csv('data/iris.csv')
+X = data.drop(['Id', 'Species'], axis=1)
+y = data['Species']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = joblib.load('model/iris_model.pkl')
+predictions = model.predict(X_test)
+accuracy = accuracy_score(y_test, predictions)
+
+# Save metrics
+metrics = {
+    'accuracy': float(accuracy),
+    'test_samples': len(y_test)
+}
+
+with open('metrics.json', 'w') as f:
+    json.dump(metrics, f, indent=2)
+
+print(f'Model accuracy: {accuracy:.4f}')
+"
+    deps:
+      - model/iris_model.pkl
+      - data/iris.csv
+    metrics:
+      - metrics.json
+    desc: "Evaluate the trained model performance"
+
+plots:
+  - ROC:
+      template: linear
+      x: fpr
+      y: tpr
+  - Confusion Matrix:
+      template: confusion
+      x: actual
+      y: predicted

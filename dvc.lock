@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  data_preparation:
+    cmd: python -c "import pandas as pd; print('Data preparation stage - 
+      iris.csv ready')"
+    deps:
+    - path: data/iris.csv
+      hash: md5
+      md5: 717820ef0af287ff346c5cabfb4c612c
+      size: 5107
+  train_model:
+    cmd: python train_simple.py
+    deps:
+    - path: data/iris.csv
+      hash: md5
+      md5: 717820ef0af287ff346c5cabfb4c612c
+      size: 5107
+    - path: train_simple.py
+      hash: md5
+      md5: 7e5a50101ab15dd98cf27877ef335da1
+      size: 2102
+    outs:
+    - path: model/iris_model.pkl
+      hash: md5
+      md5: 1f37b06fb183fea0604420394e565135
+      size: 187489
+    - path: training_metrics.json
+      hash: md5
+      md5: e76e286e93bda02d4aaf80b76fe6b68b
+      size: 136
+  evaluate_model:
+    cmd: python scripts/evaluate_model.py
+    deps:
+    - path: data/iris.csv
+      hash: md5
+      md5: 717820ef0af287ff346c5cabfb4c612c
+      size: 5107
+    - path: model/iris_model.pkl
+      hash: md5
+      md5: 1f37b06fb183fea0604420394e565135
+      size: 187489
+    outs:
+    - path: evaluation_metrics.json
+      hash: md5
+      md5: 4554f65d2c4810bbcd91f6b5b1fd64f5
+      size: 117

@@ -1,0 +1,33 @@
+# Add patterns of files dvc should ignore, which could improve
+# the performance. Learn more at
+# https://dvc.org/doc/user-guide/dvcignore
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.env
+.venv
+venv/
+
+# IDE and editor files
+.git/
+.idea/
+.vscode/
+
+# Log files
+*.log
+logs/
+
+# DVC cache and temp files
+.dvc/tmp/
+.dvc/cache/
+
+# System files
+.DS_Store
+Thumbs.db
+node_modules/

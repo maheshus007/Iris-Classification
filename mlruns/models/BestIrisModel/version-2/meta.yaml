@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1754355580120
+current_stage: None
+description: null
+last_updated_timestamp: 1754355580120
+name: BestIrisModel
+run_id: 3169a3b8e2a24740afaef996730f5f01
+run_link: null
+source: file:///E:/BitsPilani/Sem3/MLOps/Iris/Iris-Classification/mlruns/0/3169a3b8e2a24740afaef996730f5f01/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///E:/BitsPilani/Sem3/MLOps/Iris/Iris-Classification/mlruns/0/3169a3b8e2a24740afaef996730f5f01/artifacts/model
+user_id: null
+version: 2
