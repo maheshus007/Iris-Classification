@@ -1,24 +1,33 @@
-# Use an official Python runtime as the base image
+# Use Python 3.12 slim as base
 FROM python:3.12-slim
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Install system dependencies for MLflow, DVC, etc.
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    curl \
+    gcc \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy project files
 COPY ../ .
 
-# Install dependencies
+# Upgrade pip and install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Initialize DVC (without SCM since we're in Docker)
+# DVC init without SCM (no git tracking inside Docker)
 RUN dvc init --no-scm || echo "DVC already initialized"
 
 # Create necessary directories
 RUN mkdir -p /app/data /app/model /app/logs
 
-# Expose port 8000 for the FastAPI app
+# Expose FastAPI port
 EXPOSE 8000
 
-# Command to run the FastAPI app using Uvicorn
+# Run the FastAPI app
 CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
