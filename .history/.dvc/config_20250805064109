@@ -1,0 +1,27 @@
+[core]
+    no_scm = True
+
+# DVC Remote Storage Configuration
+# To set up remote storage, uncomment and configure one of the options below:
+
+# For AWS S3:
+# [core]
+#     remote = s3-remote
+# ['remote "s3-remote"']
+#     url = s3://your-bucket-name/dvc-store
+
+# For Google Cloud Storage:
+# [core]
+#     remote = gcs-remote
+# ['remote "gcs-remote"']
+#     url = gs://your-bucket-name/dvc-store
+
+# For local remote (for testing):
+# [core]
+#     remote = local-remote
+# ['remote "local-remote"']
+#     url = /tmp/dvc-storage
+
+# Cache settings
+[cache]
+    type = copy

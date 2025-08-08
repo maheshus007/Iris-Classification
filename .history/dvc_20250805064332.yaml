@@ -1,0 +1,26 @@
+stages:
+  data_preparation:
+    cmd: python -c "import pandas as pd; print('Data preparation stage - iris.csv ready')"
+    deps:
+      - data/iris.csv
+    desc: "Prepare and validate the iris dataset"
+
+  train_model:
+    cmd: python src/generate_model.py
+    deps:
+      - data/iris.csv
+      - src/generate_model.py
+    outs:
+      - model/iris_model.pkl
+    metrics:
+      - metrics.json
+    desc: "Train machine learning models and select the best one"
+
+  evaluate_model:
+    cmd: python scripts/evaluate_model.py
+    deps:
+      - model/iris_model.pkl
+      - data/iris.csv
+    metrics:
+      - metrics.json
+    desc: "Evaluate the trained model performance"

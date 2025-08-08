@@ -1,0 +1,15 @@
+cmd: python scripts/evaluate_model.py
+deps:
+- path: data/iris.csv
+  hash: md5
+  md5: 717820ef0af287ff346c5cabfb4c612c
+  size: 5107
+- path: model/iris_model.pkl
+  hash: md5
+  md5: 1f37b06fb183fea0604420394e565135
+  size: 187489
+outs:
+- path: evaluation_metrics.json
+  hash: md5
+  md5: 4554f65d2c4810bbcd91f6b5b1fd64f5
+  size: 117

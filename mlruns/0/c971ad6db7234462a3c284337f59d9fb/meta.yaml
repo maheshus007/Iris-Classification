@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/BitsPilani/Sem3/MLOps/Iris/Iris-Classification/mlruns/0/c971ad6db7234462a3c284337f59d9fb/artifacts
+end_time: 1754355571736
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c971ad6db7234462a3c284337f59d9fb
+run_name: RandomForest
+run_uuid: c971ad6db7234462a3c284337f59d9fb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754355555689
+status: 3
+tags: []
+user_id: mahes
