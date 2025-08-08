@@ -47,7 +47,7 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/iris-api:latest -f docker/Dockerfile .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/iris-api:latest -f Dockerfile .
 
       - name: Push image to Docker Hub
         run: |
